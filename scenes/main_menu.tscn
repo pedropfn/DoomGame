@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://d05uet3fb27cf"]
+
+[ext_resource type="Script" uid="uid://cvef25tgtiscx" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Shader" uid="uid://dc5eeirxgwkkj" path="res://shaders/retroCam.gdshader" id="2_ekxnf"]
+[ext_resource type="AudioStream" uid="uid://i4ryjiwtn8x5" path="res://assets/Viridian Forest.mp3" id="3_bqqt6"]
+[ext_resource type="Script" uid="uid://bqa3k2huatbw3" path="res://scenes/scale_quality.gd" id="3_wu84c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ekxnf"]
+shader = ExtResource("2_ekxnf")
+shader_parameter/pixel_size = 3.0
+shader_parameter/vhs_intensity = 1.50000007125
+shader_parameter/noise_intensity = 0.15
+shader_parameter/opacity = 0.150000007125
+
+[node name="MainMenu" type="Node2D" unique_id=2002093709]
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1692007846]
+top_level = true
+material = SubResource("ShaderMaterial_ekxnf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="." unique_id=974981995]
+offset_right = 1600.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 48
+text = " >_ Gabriels Fascist Killer Simulator"
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=387725016]
+offset_top = 200.0
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer" unique_id=961339037]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Play" type="Button" parent="CenterContainer/MainButtons" unique_id=1358402920]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Settings" type="Button" parent="CenterContainer/MainButtons" unique_id=910218865]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+
+[node name="Credits" type="Button" parent="CenterContainer/MainButtons" unique_id=545254199]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Credits"
+
+[node name="Quit" type="Button" parent="CenterContainer/MainButtons" unique_id=2120679696]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=250966752]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Graphics" type="Label" parent="CenterContainer/SettingsMenu" unique_id=766008965]
+layout_mode = 2
+text = ">_ Graphics"
+
+[node name="fullscreen" type="CheckBox" parent="CenterContainer/SettingsMenu" unique_id=33619595]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Fullscreen"
+
+[node name="vsync" type="CheckBox" parent="CenterContainer/SettingsMenu" unique_id=1871531094]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "v-sync"
+
+[node name="ScaleQuality" type="OptionButton" parent="CenterContainer/SettingsMenu" unique_id=1031792511]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+selected = 1
+item_count = 4
+popup/item_0/text = "Ultra"
+popup/item_0/id = 1
+popup/item_1/text = "High"
+popup/item_1/id = 2
+popup/item_2/text = "Medium"
+popup/item_2/id = 3
+popup/item_3/text = "Low"
+popup/item_3/id = 4
+script = ExtResource("3_wu84c")
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/ScaleQuality" unique_id=1084901967]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 131.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 12
+text = "Render Quality:"
+
+[node name="Gameplay" type="Label" parent="CenterContainer/SettingsMenu" unique_id=837027957]
+layout_mode = 2
+text = ">_ Gameplay"
+
+[node name="MouseSense" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=47052620]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MouseSense" unique_id=1167974935]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_top = -4.0
+offset_right = 115.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 12
+text = "MouseSense"
+
+[node name="Audio" type="Label" parent="CenterContainer/SettingsMenu" unique_id=442824474]
+layout_mode = 2
+text = ">_ Audio"
+
+[node name="MainVolume" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=1400856842]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MainVolume" unique_id=88422590]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 117.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 12
+text = "Main Volume"
+
+[node name="SfxVolume" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=2056249267]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/SfxVolume" unique_id=1183438635]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 104.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 12
+text = "Sfx Volume"
+
+[node name="BgmVolume" type="HSlider" parent="CenterContainer/SettingsMenu" unique_id=156386099]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/BgmVolume" unique_id=639623438]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 112.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 12
+text = "Bgm Volume"
+
+[node name="Back" type="Button" parent="CenterContainer/SettingsMenu" unique_id=60286941]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Back"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer" unique_id=233070375]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/CreditsMenu" unique_id=323789687]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "A Game by: Pedro Programas Indie Games Dev Team"
+
+[node name="Back" type="Button" parent="CenterContainer/CreditsMenu" unique_id=654944640]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 28
+text = "Back"
+
+[node name="MenuBgm" type="AudioStreamPlayer" parent="." unique_id=652192015]
+stream = ExtResource("3_bqqt6")
+autoplay = true
+bus = &"bgm"
+
+[connection signal="pressed" from="CenterContainer/MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/vsync" to="." method="_on_vsync_toggled"]
+[connection signal="item_selected" from="CenterContainer/SettingsMenu/ScaleQuality" to="CenterContainer/SettingsMenu/ScaleQuality" method="_on_item_selected"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/MouseSense" to="." method="_on_mouse_sense_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolume" to="." method="_on_main_volume_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/SfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/BgmVolume" to="." method="_on_bgm_volume_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/Back" to="." method="_on_back_pressed"]

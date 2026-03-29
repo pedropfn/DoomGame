@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c5fjsk5j4jmdn" path="res://assets/Lasier Martins tomando choque (mp3cut.net).wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://i4ryjiwtn8x5" path="res://assets/Viridian Forest.mp3" id="6_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://drjw68qtf2gw1" path="res://assets/poof_sound.wav" id="8_smehm"]
+[ext_resource type="Script" uid="uid://bqa3k2huatbw3" path="res://scenes/scale_quality.gd" id="10_y4r1p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -84,7 +85,28 @@ collision_mask = 3
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1042516672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
+[node name="ShootSound" type="AudioStreamPlayer" parent="." unique_id=1022163256]
+stream = ExtResource("3_qlg0r")
+bus = &"sfx"
+
+[node name="TakeDamageSound" type="AudioStreamPlayer" parent="." unique_id=34158598]
+unique_name_in_owner = true
+stream = ExtResource("5_qlg0r")
+bus = &"sfx"
+
+[node name="FootstepSound" type="AudioStreamPlayer" parent="." unique_id=1403654383]
+unique_name_in_owner = true
+stream = ExtResource("8_smehm")
+bus = &"sfx"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1283774872]
+
+[node name="BackgroundSound" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=461166849]
+unique_name_in_owner = true
+stream = ExtResource("6_ur7pv")
+autoplay = true
+bus = &"bgm"
+parameters/looping = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=245784954]
 material = SubResource("ShaderMaterial_fjrip")
@@ -93,6 +115,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Crosshair" type="ColorRect" parent="CanvasLayer" unique_id=1325194557]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.29738617, 0.29597965)
+color = Color(1, 0, 0, 0.48235294)
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=42275954]
 unique_name_in_owner = true
@@ -135,22 +172,8 @@ autoplay = "idle"
 frame = 3
 frame_progress = 1.0
 
-[node name="Crosshair" type="ColorRect" parent="CanvasLayer" unique_id=1325194557]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.29738617, 0.29597965)
-color = Color(1, 0, 0, 0.48235294)
-
 [node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=1145862798]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -201,7 +224,13 @@ offset_bottom = 65.17721
 scale = Vector2(0.3949592, 0.5443038)
 text = "Restart"
 
+[node name="GameOverSound" type="AudioStreamPlayer" parent="CanvasLayer/DeathScreen" unique_id=1368945297]
+unique_name_in_owner = true
+stream = ExtResource("3_dqkch")
+bus = &"bgm"
+
 [node name="WinScreen" type="Control" parent="CanvasLayer" unique_id=636676182]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -250,7 +279,14 @@ offset_bottom = 56.632908
 scale = Vector2(0.3949592, 0.5443038)
 text = "Next Stage"
 
+[node name="WinnerSound" type="AudioStreamPlayer" parent="CanvasLayer/WinScreen" unique_id=382138543]
+unique_name_in_owner = true
+stream = ExtResource("4_tuyoq")
+volume_db = -15.0
+bus = &"bgm"
+
 [node name="EndScreen" type="Control" parent="CanvasLayer" unique_id=1185437280]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -303,32 +339,189 @@ offset_bottom = 60.74684
 scale = Vector2(0.3949592, 0.5443038)
 text = "Restart"
 
-[node name="GameOverSound" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1368945297]
-unique_name_in_owner = true
-stream = ExtResource("3_dqkch")
-bus = &"sfx"
+[node name="SettingsScreen" type="Control" parent="CanvasLayer" unique_id=1323621172]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 6.0
+offset_right = -4.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="WinnerSound" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=382138543]
+[node name="SettingsMenu" type="VBoxContainer" parent="CanvasLayer/SettingsScreen" unique_id=530437750]
 unique_name_in_owner = true
-stream = ExtResource("4_tuyoq")
-volume_db = -15.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -764.0
+offset_top = 243.0
+offset_right = -364.0
+offset_bottom = 861.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="BackgroundSound" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=461166849]
+[node name="Graphics" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=901709315]
+layout_mode = 2
+text = ">_ Graphics"
+
+[node name="fullscreen" type="CheckBox" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=895034812]
 unique_name_in_owner = true
-stream = ExtResource("6_ur7pv")
-volume_db = -18.0
-autoplay = true
-parameters/looping = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Fullscreen"
 
-[node name="ShootSound" type="AudioStreamPlayer" parent="." unique_id=1022163256]
-stream = ExtResource("3_qlg0r")
-bus = &"sfx"
-
-[node name="TakeDamageSound" type="AudioStreamPlayer" parent="." unique_id=34158598]
+[node name="vsync" type="CheckBox" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=1632016832]
 unique_name_in_owner = true
-stream = ExtResource("5_qlg0r")
-bus = &"sfx"
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "v-sync"
 
-[node name="FootstepSound" type="AudioStreamPlayer" parent="." unique_id=1403654383]
+[node name="ScaleQuality" type="OptionButton" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=700362821]
 unique_name_in_owner = true
-stream = ExtResource("8_smehm")
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+selected = 1
+item_count = 4
+popup/item_0/text = "Ultra"
+popup/item_0/id = 1
+popup/item_1/text = "High"
+popup/item_1/id = 2
+popup/item_2/text = "Medium"
+popup/item_2/id = 3
+popup/item_3/text = "Low"
+popup/item_3/id = 4
+script = ExtResource("10_y4r1p")
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" unique_id=1457608405]
+layout_mode = 0
+offset_top = -17.0
+offset_right = 131.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 12
+text = "Render Quality:"
+
+[node name="Gameplay" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=1264706291]
+layout_mode = 2
+text = ">_ Gameplay"
+
+[node name="MouseSense" type="HSlider" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=1820464859]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/MouseSense" unique_id=988725185]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_top = -4.0
+offset_right = 115.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 12
+text = "MouseSense"
+
+[node name="Audio" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=801101471]
+layout_mode = 2
+text = ">_ Audio"
+
+[node name="MainVolume" type="HSlider" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=377089837]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/MainVolume" unique_id=1945261243]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 104.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 12
+text = "Main Volume"
+
+[node name="SfxVolume" type="HSlider" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=1674464247]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/SfxVolume" unique_id=1998014338]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 104.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 12
+text = "Sfx Volume"
+
+[node name="BgmVolume" type="HSlider" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=2054511512]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/BgmVolume" unique_id=44906471]
+custom_minimum_size = Vector2(24, 18)
+layout_mode = 0
+offset_left = 3.0
+offset_top = -7.0
+offset_right = 105.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 12
+text = "Bgm Volume"
+
+[node name="Back" type="Button" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=637334096]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 28
+text = "Back"
+
+[node name="RestartSettings" type="Button" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=828976829]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/SettingsScreen/SettingsMenu" unique_id=541303062]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen" unique_id=128243249]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -764.0
+offset_top = -250.0
+offset_right = 94.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3277312, 0.62025404)
+theme_override_font_sizes/font_size = 48
+text = "------------------- >_ Settings -------------------"
+horizontal_alignment = 1
+
+[connection signal="toggled" from="CanvasLayer/SettingsScreen/SettingsMenu/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="CanvasLayer/SettingsScreen/SettingsMenu/vsync" to="." method="_on_vsync_toggled"]
+[connection signal="item_selected" from="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" to="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" method="_on_item_selected"]
+[connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/MouseSense" to="." method="_on_mouse_sense_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/MainVolume" to="." method="_on_main_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/SfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/BgmVolume" to="." method="_on_bgm_volume_value_changed"]
+[connection signal="pressed" from="CanvasLayer/SettingsScreen/SettingsMenu/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsScreen/SettingsMenu/RestartSettings" to="." method="_on_restart_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsScreen/SettingsMenu/MainMenu" to="." method="_on_main_menu_pressed"]

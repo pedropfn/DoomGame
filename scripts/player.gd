@@ -1,31 +1,38 @@
 extends CharacterBody3D
+var MOUSE_SENS = 0.5
+const SPEED = 5.0
 
 @onready var animatedSprite2d = $CanvasLayer/GunBase/AnimatedSprite2D
 @onready var rayCast3d = $RayCast3D
 @onready var shootSound = $ShootSound
 @onready var footstepSound = %FootstepSound
-
 @onready var lifeLabel = %LifeLabel
 @onready var scoreLabel = %ScoreLabel
 
 @onready var currentScene = get_tree().current_scene.name
+@onready var mainMenu = get_tree().get_first_node_in_group("MainMenu")
 
-const SPEED = 5.0
-const MOUSE_SENS = 0.3
-
-var canShoot = true
-var dead = false
-var life = 100
-var score = 0
-var goal = 3
+@onready var canShoot = true
+@onready var dead = false
+@onready var life = 100
+@onready var score = 0
+@onready var goal = 0
 
 func _ready():
 	nextGoal()
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	animatedSprite2d.animation_finished.connect(shootAnimationReady)
+	
 	$CanvasLayer/DeathScreen/Panel/Button.button_up.connect(restart)
 	$CanvasLayer/EndScreen/Panel/Button.button_up.connect(restart)
 	$CanvasLayer/WinScreen/Panel/Button.button_up.connect(nextStage)
+	
+	%fullscreen.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
+	%vsync.button_pressed = true if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED else false
+	%MainVolume.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	%SfxVolume.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx")))
+	%BgmVolume.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("bgm")))
 
 func _input(event):
 	if dead:
@@ -35,7 +42,15 @@ func _input(event):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		if $CanvasLayer/SettingsScreen.visible == false:
+			$CanvasLayer/SettingsScreen.show()
+			get_tree().paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			$CanvasLayer/SettingsScreen.hide()
+			get_tree().paused = false
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
 	if Input.is_action_just_pressed("restart"):
 		restart()
 	
@@ -64,8 +79,8 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
-
 func restart():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
 
 func nextGoal():
@@ -123,3 +138,41 @@ func kill():
 	%GameOverSound.play(0.2)
 	$CanvasLayer/DeathScreen.show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _on_back_pressed() -> void:
+	$CanvasLayer/SettingsScreen.hide()
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+func _on_fullscreen_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+func _on_main_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), value)
+
+func _on_sfx_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("sfx"), value)
+
+func _on_bgm_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("bgm"), value)
+
+func _on_restart_settings_pressed() -> void:
+	restart()
+
+func _on_main_menu_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_vsync_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+
+func _on_mouse_sense_value_changed(value: float) -> void:
+	MOUSE_SENS = value

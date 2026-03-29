@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://03ndpd7jalbb"]
+
+[ext_resource type="Script" uid="uid://bgiv8l68vy3j0" path="res://scripts/intro.gd" id="1_4bx60"]
+[ext_resource type="Shader" uid="uid://dc5eeirxgwkkj" path="res://shaders/retroCam.gdshader" id="1_ioskq"]
+[ext_resource type="AudioStream" uid="uid://i4ryjiwtn8x5" path="res://assets/Viridian Forest.mp3" id="2_yjqpq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjqpq"]
+shader = ExtResource("1_ioskq")
+shader_parameter/pixel_size = 3.0
+shader_parameter/vhs_intensity = 1.50000007125
+shader_parameter/noise_intensity = 0.15
+shader_parameter/opacity = 0.150000007125
+
+[sub_resource type="SystemFont" id="SystemFont_4bx60"]
+
+[node name="intro" type="Node2D" unique_id=1112201847]
+script = ExtResource("1_4bx60")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1944639289]
+top_level = true
+material = SubResource("ShaderMaterial_yjqpq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=901980231]
+
+[node name="StoryFrame1" type="PanelContainer" parent="CanvasLayer" unique_id=207486179]
+unique_name_in_owner = true
+offset_left = 165.0
+offset_top = 38.0
+offset_right = 772.0
+offset_bottom = 346.0
+
+[node name="StoryFrame2" type="PanelContainer" parent="CanvasLayer" unique_id=2092176742]
+unique_name_in_owner = true
+visible = false
+offset_left = 879.0
+offset_top = 201.0
+offset_right = 1486.0
+offset_bottom = 509.0
+
+[node name="StoryFrame3" type="PanelContainer" parent="CanvasLayer" unique_id=833608723]
+unique_name_in_owner = true
+visible = false
+offset_left = 244.0
+offset_top = 383.0
+offset_right = 851.0
+offset_bottom = 691.0
+
+[node name="StoryFrame4" type="PanelContainer" parent="CanvasLayer" unique_id=496093966]
+unique_name_in_owner = true
+visible = false
+offset_left = 108.0
+offset_top = 99.0
+offset_right = 1510.0
+offset_bottom = 676.0
+
+[node name="Text" type="PanelContainer" parent="CanvasLayer" unique_id=566559182]
+offset_left = 37.0
+offset_top = 707.0
+offset_right = 1563.0
+offset_bottom = 830.0
+
+[node name="Message" type="Label" parent="CanvasLayer/Text" unique_id=1174031758]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_4bx60")
+theme_override_font_sizes/font_size = 28
+text = " Eles dizem que existem para proteger, mas proteger quem?"
+
+[node name="Next" type="Button" parent="CanvasLayer" unique_id=1588682651]
+unique_name_in_owner = true
+offset_left = 1484.0
+offset_top = 845.0
+offset_right = 1592.0
+offset_bottom = 886.0
+text = "Next"
+
+[node name="Skip" type="Button" parent="CanvasLayer" unique_id=676027376]
+unique_name_in_owner = true
+offset_left = 1479.0
+offset_top = 10.0
+offset_right = 1589.0
+offset_bottom = 52.0
+text = "Skip
+"
+
+[node name="IntroBgm" type="AudioStreamPlayer" parent="." unique_id=2115923804]
+stream = ExtResource("2_yjqpq")
+autoplay = true
+bus = &"bgm"
+
+[connection signal="pressed" from="CanvasLayer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/Skip" to="." method="_on_skip_pressed"]
