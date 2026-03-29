@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cvef25tgtiscx" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Shader" uid="uid://dc5eeirxgwkkj" path="res://shaders/retroCam.gdshader" id="2_ekxnf"]
 [ext_resource type="AudioStream" uid="uid://i4ryjiwtn8x5" path="res://assets/Viridian Forest.mp3" id="3_bqqt6"]
-[ext_resource type="Script" uid="uid://bqa3k2huatbw3" path="res://scenes/scale_quality.gd" id="3_wu84c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekxnf"]
 shader = ExtResource("2_ekxnf")
@@ -11,6 +10,16 @@ shader_parameter/pixel_size = 3.0
 shader_parameter/vhs_intensity = 1.50000007125
 shader_parameter/noise_intensity = 0.15
 shader_parameter/opacity = 0.150000007125
+
+[sub_resource type="GDScript" id="GDScript_bqqt6"]
+script/source = "extends OptionButton
+
+func _on_item_selected(index: int) -> void:
+	var option = [1, 0.75, 0.5, 0.25]
+	var value = option[index]
+	get_tree().root.scaling_3d_scale = value
+	print(value)
+"
 
 [node name="MainMenu" type="Node2D" unique_id=2002093709]
 script = ExtResource("1_l6cm7")
@@ -97,7 +106,7 @@ popup/item_2/text = "Medium"
 popup/item_2/id = 3
 popup/item_3/text = "Low"
 popup/item_3/id = 4
-script = ExtResource("3_wu84c")
+script = SubResource("GDScript_bqqt6")
 
 [node name="Label" type="Label" parent="CenterContainer/SettingsMenu/ScaleQuality" unique_id=1084901967]
 layout_mode = 0
@@ -118,7 +127,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/MouseSense" unique_id=1167974935]
+[node name="MouseSenseLabel" type="Label" parent="CenterContainer/SettingsMenu/MouseSense" unique_id=1167974935]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 18)
 layout_mode = 0
 offset_top = -4.0
@@ -215,7 +225,7 @@ bus = &"bgm"
 [connection signal="pressed" from="CenterContainer/MainButtons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="CenterContainer/SettingsMenu/fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="CenterContainer/SettingsMenu/vsync" to="." method="_on_vsync_toggled"]
-[connection signal="item_selected" from="CenterContainer/SettingsMenu/ScaleQuality" to="CenterContainer/SettingsMenu/ScaleQuality" method="_on_item_selected"]
+[connection signal="item_selected" from="CenterContainer/SettingsMenu/ScaleQuality" to="." method="_on_scale_quality_item_selected"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/MouseSense" to="." method="_on_mouse_sense_value_changed"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/MainVolume" to="." method="_on_main_volume_value_changed"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/SfxVolume" to="." method="_on_sfx_volume_value_changed"]

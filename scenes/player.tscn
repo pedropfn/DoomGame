@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://c5fjsk5j4jmdn" path="res://assets/Lasier Martins tomando choque (mp3cut.net).wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://i4ryjiwtn8x5" path="res://assets/Viridian Forest.mp3" id="6_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://drjw68qtf2gw1" path="res://assets/poof_sound.wav" id="8_smehm"]
-[ext_resource type="Script" uid="uid://bqa3k2huatbw3" path="res://scenes/scale_quality.gd" id="10_y4r1p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
@@ -67,6 +66,16 @@ animations = [{
 "name": &"shoot",
 "speed": 10.0
 }]
+
+[sub_resource type="GDScript" id="GDScript_bqqt6"]
+script/source = "extends OptionButton
+
+func _on_item_selected(index: int) -> void:
+	var option = [1, 0.75, 0.5, 0.25]
+	var value = option[index]
+	get_tree().root.scaling_3d_scale = value
+	print(value)
+"
 
 [node name="Player" type="CharacterBody3D" unique_id=199580385 groups=["player"]]
 collision_layer = 2
@@ -341,6 +350,7 @@ text = "Restart"
 
 [node name="SettingsScreen" type="Control" parent="CanvasLayer" unique_id=1323621172]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,7 +406,7 @@ popup/item_2/text = "Medium"
 popup/item_2/id = 3
 popup/item_3/text = "Low"
 popup/item_3/id = 4
-script = ExtResource("10_y4r1p")
+script = SubResource("GDScript_bqqt6")
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" unique_id=1457608405]
 layout_mode = 0
@@ -417,7 +427,8 @@ layout_mode = 2
 max_value = 1.0
 step = 0.001
 
-[node name="Label" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/MouseSense" unique_id=988725185]
+[node name="MouseSenseLabel" type="Label" parent="CanvasLayer/SettingsScreen/SettingsMenu/MouseSense" unique_id=988725185]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 18)
 layout_mode = 0
 offset_top = -4.0
@@ -517,7 +528,7 @@ horizontal_alignment = 1
 
 [connection signal="toggled" from="CanvasLayer/SettingsScreen/SettingsMenu/fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsScreen/SettingsMenu/vsync" to="." method="_on_vsync_toggled"]
-[connection signal="item_selected" from="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" to="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" method="_on_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/SettingsScreen/SettingsMenu/ScaleQuality" to="." method="_on_scale_quality_item_selected"]
 [connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/MouseSense" to="." method="_on_mouse_sense_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/MainVolume" to="." method="_on_main_volume_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsScreen/SettingsMenu/SfxVolume" to="." method="_on_sfx_volume_value_changed"]

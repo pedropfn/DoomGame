@@ -1,0 +1,8 @@
+x pausar jogo no settings
+configuração de mouse sense no settings
+tela de controles
+x ajustar qualidades graficas
+som de eco nos sfx
+boss pode atirar projeteis
+carrinho de lanche com upgrade de vida, move speed ou dano
+armas diferentes com taxa de disparo e dano diferente
