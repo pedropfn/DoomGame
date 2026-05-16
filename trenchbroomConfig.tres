@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TrenchBroomGameConfig" format=3 uid="uid://bmavq0bj8enqc"]
+
+[ext_resource type="Resource" uid="uid://b4xhdj0e16lop" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_clip.tres" id="1_yb45a"]
+[ext_resource type="Resource" uid="uid://ca7377sfgj074" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_skip.tres" id="2_g34tt"]
+[ext_resource type="Resource" uid="uid://bkjxc54mmdhbo" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_origin.tres" id="3_tsxjq"]
+[ext_resource type="Resource" uid="uid://gu4g5iqayhii" path="res://funcgodotConfig.tres" id="4_yb45a"]
+[ext_resource type="Texture2D" uid="uid://decwujsyhj0qy" path="res://addons/func_godot/icon32.png" id="5_mgvfv"]
+[ext_resource type="Script" uid="uid://cx44c4vnq8bt5" path="res://addons/func_godot/src/trenchbroom/trenchbroom_game_config.gd" id="6_10pg7"]
+
+[resource]
+script = ExtResource("6_10pg7")
+game_name = "Gabriel"
+fgd_file = ExtResource("4_yb45a")
+metadata/_custom_type_script = "uid://cx44c4vnq8bt5"

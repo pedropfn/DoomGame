@@ -8,6 +8,7 @@ var speed = 5.0
 @onready var footstepSound = %FootstepSound
 @onready var lifeLabel = %LifeLabel
 @onready var scoreLabel = %ScoreLabel
+@onready var playerCam = %Camera3D
 
 @onready var currentScene = get_tree().current_scene.name
 @onready var mainMenu = get_tree().get_first_node_in_group("MainMenu")
@@ -32,7 +33,7 @@ func _ready():
 	
 	%fullscreen.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
 	%vsync.button_pressed = true if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED else false
-	# %ScaleQuality.selected = renderQuality
+	%ScaleQuality.selected = renderQuality
 
 	%MainVolume.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 	%SfxVolume.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("sfx")))
@@ -45,7 +46,9 @@ func _input(event):
 	if dead:
 		return
 	if event is InputEventMouseMotion:
-		rotation_degrees.y -= event.relative.x * mouseSense
+		rotation_degrees.y -= (event.relative.x * 0.3)
+		playerCam.rotation_degrees.x -= (event.relative.y * 0.3)
+		playerCam.rotation_degrees.x = clamp(playerCam.rotation_degrees.x, -60.0, 60.0)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
@@ -66,12 +69,22 @@ func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if dead:
 		return
 
-	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBackward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var inputDirection2d = Input.get_vector("moveLeft", "moveRight", "moveForward", "moveBackward")
+	var inputDirection3d = Vector3(inputDirection2d.x, 0.0, inputDirection2d.y)
+	var direction = transform.basis * inputDirection3d
+	
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
+	velocity.y -= 20.0 * delta
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = 10.0
+	elif Input.is_action_just_released("jump") and velocity.y > 0.0:
+		velocity.y = 0
 	
 	if direction:
 		velocity.x = direction.x * speed
