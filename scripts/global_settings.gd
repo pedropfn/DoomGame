@@ -4,7 +4,7 @@ extends Node
 
 @onready var FULLSCREEN
 @onready var VSYNC
-@onready var RENDER_QUALITY = 0.75
+@onready var RENDER_QUALITY
 @onready var MAIN_VOLUME
 @onready var SFX_VOLUME
 @onready var BGM_VOLUME
@@ -14,9 +14,9 @@ func _ready():
 	settings.load("user://settings.cfg")
 	if !settings:
 		MOUSE_SENS = 0.5
-		RENDER_QUALITY = 0.75
 		
 	for setting in settings.get_sections():
+		print(setting)
 		FULLSCREEN = settings.get_value(setting, "fullscreen_toggled")
 		VSYNC = settings.get_value(setting, "vsync_toggled")
 		RENDER_QUALITY = settings.get_value(setting, "scale_quality_item_selected")

@@ -37,7 +37,7 @@ grow_vertical = 2
 offset_right = 1600.0
 offset_bottom = 200.0
 theme_override_font_sizes/font_size = 48
-text = " >_ Gabriels Fascist Killer Simulator"
+text = " >_ My Name Is Gabriel"
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=387725016]

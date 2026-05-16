@@ -5,6 +5,9 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nnsk1"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwgxs"]
+albedo_color = Color(0.57581425, 0.0004430917, 0.62447333, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_4wyf3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k0juu"]
@@ -25,6 +28,7 @@ mesh = SubResource("PlaneMesh_nnsk1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment" unique_id=1124229664]
 transform = Transform3D(6.2131305, 0, 0, 0, 5.0115275, 0, 0, 0, 1, -12.81294, 2.2625833, -4.6796145)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D" unique_id=1535260990]
@@ -34,6 +38,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Enviroment" unique_id=1563382153]
 transform = Transform3D(6.2131305, 0, 0, 0, 5.0115275, 0, 0, 0, 1, -12.81294, 2.2625833, -1.4320726)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D2" unique_id=1898194673]
@@ -43,6 +48,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Enviroment" unique_id=2125102613]
 transform = Transform3D(0.009051292, 0, -1.0003495, 0, 5.011528, 0, 6.648981, 0, 0.0013617874, -9.097132, 2.2625833, 1.5243692)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D3" unique_id=2021994130]
@@ -52,6 +58,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Enviroment" unique_id=2065274833]
 transform = Transform3D(0.008457959, 0, -0.9999992, 0, 5.011528, 0, 6.213125, 0, 0.0013613105, -5.972634, 2.2625833, 1.2678518)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D4" unique_id=246490566]
@@ -61,6 +68,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Enviroment" unique_id=848602946]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, -5.328957, 2.2625833, 7.191687)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D7" unique_id=2129090616]
@@ -70,6 +78,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="Enviroment" unique_id=750950199]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, -11.737054, 2.2625833, 7.191687)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D16" unique_id=1828424534]
@@ -79,6 +88,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="Enviroment" unique_id=763338213]
 transform = Transform3D(-0.12068452, 0, 1.0044618, 0, 5.011528, 0, -8.124813, 0, -0.014920102, -15.416369, 2.2625833, 3.4632316)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D17" unique_id=593257847]
@@ -88,6 +98,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Enviroment" unique_id=329916245]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, -2.27496, 2.2625833, 3.6438155)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D8" unique_id=598898229]
@@ -97,6 +108,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="Enviroment" unique_id=2005575326]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 1.1256108, 2.2625833, 7.1017284)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D9" unique_id=1761276697]
@@ -106,6 +118,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Enviroment" unique_id=619895464]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 5.6255803, 2.2625833, 3.4184704)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D10" unique_id=2139704931]
@@ -118,6 +131,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="Enviroment" unique_id=597099829]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 7.8494663, 2.2625833, 7.0750732)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D24" unique_id=442092808]
@@ -130,6 +144,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D25" type="MeshInstance3D" parent="Enviroment" unique_id=678702145]
 transform = Transform3D(-4.370823, 0, -0.009031698, 0, 5.011528, 0, 0.039593082, 0, -0.9970412, 13.437352, 2.2625833, 7.1355543)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D25" unique_id=2111074]
@@ -142,6 +157,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="Enviroment" unique_id=1671357860]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 0.5411625, 2.2625833, 0.06405187)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D11" unique_id=256434963]
@@ -151,6 +167,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="Enviroment" unique_id=172660222]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 7.056152, 2.2625833, 0.06405187)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D18" unique_id=1718248498]
@@ -160,6 +177,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="Enviroment" unique_id=259048512]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 3.962265, 2.2802567, -3.6263437)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D19" unique_id=877407066]
@@ -169,6 +187,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D22" type="MeshInstance3D" parent="Enviroment" unique_id=1719803584]
 transform = Transform3D(0.056930393, 0, 0.9999582, 0, 5.011528, 0, -6.21287, 0, 0.009162918, 12.597512, 2.2802567, -2.5275798)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D22" unique_id=539633414]
@@ -178,6 +197,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D26" type="MeshInstance3D" parent="Enviroment" unique_id=1227820332]
 transform = Transform3D(0.056930393, 0, 0.9999582, 0, 5.011528, 0, -6.21287, 0, 0.009162918, 15.228748, 2.2802567, 3.2157745)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D26" unique_id=1702431509]
@@ -187,6 +207,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D27" type="MeshInstance3D" parent="Enviroment" unique_id=1081866210]
 transform = Transform3D(0.056930393, 0, 0.9999582, 0, 5.011528, 0, -6.21287, 0, 0.009162918, 15.228748, 2.2802567, -3.1615748)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D27" unique_id=874842330]
@@ -196,6 +217,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="Enviroment" unique_id=1665002326]
 transform = Transform3D(2.246846, 0, 0.6904767, 0, 3.5754213, 0, -1.7563126, 0, 0.88332486, 11.78364, 1.6348891, 3.7161202)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D23" unique_id=145992514]
@@ -205,6 +227,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Enviroment" unique_id=1024220118]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 8.047216, 2.4410362, -7.257727)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D20" unique_id=1006411090]
@@ -214,6 +237,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D28" type="MeshInstance3D" parent="Enviroment" unique_id=226916514]
 transform = Transform3D(-4.063737, 0, -0.009029748, 0, 5.011528, 0, 0.036811344, 0, -0.9968259, 13.546383, 2.4771318, -7.237398)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D28" unique_id=1055571434]
@@ -223,6 +247,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Enviroment" unique_id=1553132467]
 transform = Transform3D(-6.212876, 0, -0.009058131, 0, 5.011528, 0, 0.05627931, 0, -0.99995923, 1.6921196, 2.4410362, -7.257727)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D21" unique_id=569719577]
@@ -232,6 +257,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="Enviroment" unique_id=701363241]
 transform = Transform3D(-0.0099057555, -0.025438914, -0.99998623, 0.028543497, 5.0114098, -0.005083354, 6.2130575, -0.023063542, -0.0015709735, -2.19275, 2.2625833, -3.6148505)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D12" unique_id=2049620108]
@@ -241,6 +267,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="Enviroment" unique_id=1523115572]
 transform = Transform3D(14.054569, -0.023042478, -0.0062654377, 0.06456952, 4.9808083, -0.0050409567, 0.08912973, 0.025174474, 0.9916274, -8.666393, 2.2625833, -7.4160094)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D13" unique_id=1023251111]
@@ -250,6 +277,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Enviroment" unique_id=546272503]
 transform = Transform3D(0.024194557, 0, -0.9992179, 0, 5.011528, 0, 2.8118057, 0, 0.0085979095, -5.16832, 2.2625833, -4.1866126)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D5" unique_id=718343080]
@@ -259,6 +287,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Enviroment" unique_id=1108252907]
 transform = Transform3D(2.828381, 0, 0.0019160088, 0, 4.72266, 0, -0.005331348, 0, 1.0164696, -8.160937, 2.2092252, -4.7938175)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D6" unique_id=925708264]
@@ -268,6 +297,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="Enviroment" unique_id=1768211209]
 transform = Transform3D(-0.009481974, 0, -0.9958438, 0, 4.72266, 0, 1.7030315, 0, -0.0055445433, -15.396289, 2.2092252, -6.047128)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D14" unique_id=313091969]
@@ -277,6 +307,7 @@ shape = SubResource("BoxShape3D_k0juu")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Enviroment" unique_id=1776733573]
 transform = Transform3D(0.018275052, 0, -0.99922895, 0, 4.72266, 0, 1.9498287, 0, 0.009365443, -15.396289, 2.2092252, -3.0276332)
+material_override = SubResource("StandardMaterial3D_rwgxs")
 mesh = SubResource("BoxMesh_4wyf3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D15" unique_id=140244748]
@@ -288,7 +319,7 @@ shape = SubResource("BoxShape3D_k0juu")
 environment = SubResource("Environment_e5uuo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=239524950]
-transform = Transform3D(0.009337286, 0.5697673, -0.821753, -0.006473644, 0.82180613, 0.5697305, 0.99993545, 7.487771e-19, 0.01136191, -13.08935, 12.241482, 0)
+transform = Transform3D(0.008226471, 0.68975854, -0.72399276, -0.007836975, 0.72403955, 0.68971395, 0.99993545, 1.9649795e-09, 0.011361911, -21.844994, 12.241482, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=199580385 instance=ExtResource("1_nnsk1")]

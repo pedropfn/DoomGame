@@ -1,7 +1,13 @@
-x pausar jogo no settings
-configuração de mouse sense no settings
+-- settings
+x pausar jogo
+x ajuste de mouse sense
+x ajuste de qualidades graficas
+ajuste de resolução da tela
+load de settings global
 tela de controles
-x ajustar qualidades graficas
+otimização de uso da gpu (mineirando legal quando desliga o vsync)
+
+-- features
 som de eco nos sfx
 boss pode atirar projeteis
 carrinho de lanche com upgrade de vida, move speed ou dano
